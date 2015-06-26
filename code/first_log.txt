@@ -1,0 +1,364 @@
+C:\Python27_64\python.exe C:/Users/vmkocheg/Documents/MLContest/Phase2/asml.intel.com-3-input/run.py C:\Users\vmkocheg\Documents\MLContest\Phase2\input C:\Users\vmkocheg\Documents\MLContest\Phase2\output
+2015-06-26 17:40:13
+************************************************************************
+****** Attempting to copy files (from res/) for RESULT submission ******
+************************************************************************
+[-] Missing 'test' result files for albert
+======== Some missing results on current datasets!
+======== Proceeding to train/test:
+
+************************************************
+******** Processing dataset Albert ********
+************************************************
+======== Reading and converting data ==========
+Info file found : C:\Users\vmkocheg\Documents\MLContest\Phase2\input\albert\albert_public.info
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/albert/albert_feat.type
+[+] Success in  0.00 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/albert/albert_train.data
+Replace missing values by 0 (slow, sorry)
+[+] Success in 60.61 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/albert/albert_train.solution
+[+] Success in  0.54 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/albert/albert_valid.data
+Replace missing values by 0 (slow, sorry)
+[+] Success in  3.56 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/albert/albert_test.data
+Replace missing values by 0 (slow, sorry)
+[+] Success in  7.11 sec
+DataManager : albert
+info:
+	task = binary.classification
+	name = albert
+	feat_type = Numerical
+	format = dense
+	is_sparse = 0
+	metric = f1_metric
+	target_type = Categorical
+	test_num = 51048
+	label_num = 2
+	target_num = 1
+	valid_num = 25526
+	has_categorical = 1
+	usage = AutoML challenge 2014
+	feat_num = 78
+	time_budget = 1200
+	train_num = 425240
+	has_missing = 1
+data:
+	X_train = array(425240L, 156L)
+	Y_train = array(425240L,)
+	X_valid = array(25526L, 156L)
+	X_test = array(51048L, 156L)
+feat_type:	array(78L,)
+feat_idx:	array(156L,)
+
+[+] Remaining time after reading data 1127.18 sec
+======== Creating model ==========
+(425240L, 156L)
+(425240L,)
+(25526L, 156L)
+(51048L, 156L)
+multiclass!!!!!!!!!
+
+make multiclass prediction
+
+('np seed = ', 1435329686)
+(425240L, 156L)
+train_data.shape == (425240,156)
+
+FS_iterations = 753
+
+('FS time = ', 158.125)
+0.000641025641026
+(425240L, 48L)
+n_iterations = 411 depth=6 learning_rate = 0.010000, subsample_part = 0.600000, n_max_features=48
+hello
+('y_valid.shape = ', (25526L,))
+('y_test.shape = ', (51048L,))
+[+] Prediction success, time spent so far 1838.78 sec
+[+] Results saved, time spent so far 1838.90 sec
+[+] End cycle, remaining time -711.72 sec
+************************************************
+******** Processing dataset Dilbert ********
+************************************************
+======== Reading and converting data ==========
+Info file found : C:\Users\vmkocheg\Documents\MLContest\Phase2\input\dilbert\dilbert_public.info
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/dilbert/dilbert_feat.type
+[+] Success in  0.00 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/dilbert/dilbert_train.data
+[+] Success in  4.58 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/dilbert/dilbert_train.solution
+	Converting to numeric vector
+[ 4.  2.  4. ...,  2.  3.  4.]
+[+] Success in  0.03 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/dilbert/dilbert_valid.data
+[+] Success in  2.25 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/dilbert/dilbert_test.data
+[+] Success in  5.63 sec
+DataManager : dilbert
+info:
+	task = multiclass.classification
+	name = dilbert
+	feat_type = Numerical
+	format = dense
+	is_sparse = 0
+	metric = pac_metric
+	target_type = Categorical
+	test_num = 9720
+	label_num = 5
+	target_num = 5
+	valid_num = 4860
+	has_categorical = 0
+	usage = AutoML challenge 2014
+	feat_num = 2000
+	time_budget = 1200
+	train_num = 10000
+	has_missing = 0
+data:
+	X_train = array(10000L, 2000L)
+	Y_train = array(10000L,)
+	X_valid = array(4860L, 2000L)
+	X_test = array(9720L, 2000L)
+feat_type:	array(2000L,)
+feat_idx:	array(2000L,)
+
+[+] Remaining time after reading data 1186.92 sec
+======== Creating model ==========
+(10000L, 2000L)
+(10000L,)
+(4860L, 2000L)
+(9720L, 2000L)
+multiclass!!!!!!!!!
+
+make multiclass prediction
+
+('np seed = ', 1435331465)
+(10000L, 2000L)
+train_data.shape == (10000,2000)
+
+FS_iterations = 500
+
+('FS time = ', 6.502000093460083)
+5e-05
+(10000L, 1096L)
+n_iterations = 5090 depth=8 learning_rate = 0.010000, subsample_part = 0.600000, n_max_features=33
+hello
+('y_valid.shape = ', (4860L,))
+('y_test.shape = ', (9720L,))
+[+] Prediction success, time spent so far 851.21 sec
+[+] Results saved, time spent so far 851.23 sec
+[+] End cycle, remaining time 335.69 sec
+************************************************
+******** Processing dataset Fabert ********
+************************************************
+======== Reading and converting data ==========
+Info file found : C:\Users\vmkocheg\Documents\MLContest\Phase2\input\fabert\fabert_public.info
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/fabert/fabert_feat.type
+[+] Success in  0.00 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/fabert/fabert_train.data
+[+] Success in  0.94 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/fabert/fabert_train.solution
+	Converting to numeric vector
+[ 3.  5.  3. ...,  5.  3.  2.]
+[+] Success in  0.01 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/fabert/fabert_valid.data
+[+] Success in  0.14 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/fabert/fabert_test.data
+[+] Success in  0.27 sec
+DataManager : fabert
+info:
+	task = multiclass.classification
+	name = fabert
+	feat_type = Numerical
+	format = dense
+	is_sparse = 0
+	metric = pac_metric
+	target_type = Categorical
+	test_num = 2354
+	label_num = 7
+	target_num = 7
+	valid_num = 1177
+	has_categorical = 0
+	usage = AutoML challenge 2014
+	feat_num = 800
+	time_budget = 1200
+	train_num = 8237
+	has_missing = 0
+data:
+	X_train = array(8237L, 800L)
+	Y_train = array(8237L,)
+	X_valid = array(1177L, 800L)
+	X_test = array(2354L, 800L)
+feat_type:	array(800L,)
+feat_idx:	array(800L,)
+
+[+] Remaining time after reading data 1198.54 sec
+======== Creating model ==========
+(8237L, 800L)
+(8237L,)
+(1177L, 800L)
+(2354L, 800L)
+multiclass!!!!!!!!!
+
+make multiclass prediction
+
+('np seed = ', 1435332305)
+(8237L, 800L)
+train_data.shape == (8237,800)
+
+FS_iterations = 1083
+
+('FS time = ', 5.175999879837036)
+0.000125
+(8237L, 166L)
+n_iterations = 12140 depth=9 learning_rate = 0.010000, subsample_part = 0.600000, n_max_features=12
+hello
+('y_valid.shape = ', (1177L,))
+('y_test.shape = ', (2354L,))
+[+] Prediction success, time spent so far 1108.47 sec
+[+] Results saved, time spent so far 1108.48 sec
+[+] End cycle, remaining time 90.06 sec
+************************************************
+******** Processing dataset Robert ********
+************************************************
+======== Reading and converting data ==========
+Info file found : C:\Users\vmkocheg\Documents\MLContest\Phase2\input\robert\robert_public.info
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/robert/robert_feat.type
+[+] Success in  0.01 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/robert/robert_train.data
+[+] Success in 16.61 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/robert/robert_train.solution
+	Converting to numeric vector
+[ 3.  1.  7. ...,  4.  5.  9.]
+[+] Success in  0.02 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/robert/robert_valid.data
+[+] Success in  2.72 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/robert/robert_test.data
+[+] Success in  6.77 sec
+DataManager : robert
+info:
+	task = multiclass.classification
+	name = robert
+	feat_type = Numerical
+	format = dense
+	is_sparse = 0
+	metric = bac_metric
+	target_type = Binary
+	test_num = 5000
+	label_num = 10
+	target_num = 10
+	valid_num = 2000
+	has_categorical = 0
+	usage = AutoML challenge 2014
+	feat_num = 7200
+	time_budget = 1200
+	train_num = 10000
+	has_missing = 0
+data:
+	X_train = array(10000L, 7200L)
+	Y_train = array(10000L,)
+	X_valid = array(2000L, 7200L)
+	X_test = array(5000L, 7200L)
+feat_type:	array(7200L,)
+feat_idx:	array(7200L,)
+
+[+] Remaining time after reading data 1172.19 sec
+======== Creating model ==========
+(10000L, 7200L)
+(10000L,)
+(2000L, 7200L)
+(5000L, 7200L)
+multiclass!!!!!!!!!
+
+make multiclass prediction
+
+('np seed = ', 1435333440)
+(10000L, 7200L)
+train_data.shape == (10000,7200)
+
+FS_iterations = 69
+
+('FS time = ', 1.4670000076293945)
+1.38888888889e-05
+(10000L, 416L)
+n_iterations = 4200 depth=8 learning_rate = 0.010000, subsample_part = 0.600000, n_max_features=20
+hello
+('y_valid.shape = ', (2000L,))
+('y_test.shape = ', (5000L,))
+[+] Prediction success, time spent so far 1454.17 sec
+[+] Results saved, time spent so far 1454.18 sec
+[+] End cycle, remaining time -281.99 sec
+************************************************
+******** Processing dataset Volkert ********
+************************************************
+======== Reading and converting data ==========
+Info file found : C:\Users\vmkocheg\Documents\MLContest\Phase2\input\volkert\volkert_public.info
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/volkert/volkert_feat.type
+[+] Success in  0.00 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/volkert/volkert_train.data
+[+] Success in  2.27 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/volkert/volkert_train.solution
+	Converting to numeric vector
+[ 0.  2.  9. ...,  0.  5.  7.]
+[+] Success in  0.13 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/volkert/volkert_valid.data
+[+] Success in  0.14 sec
+========= Reading C:\Users\vmkocheg\Documents\MLContest\Phase2\input/volkert/volkert_test.data
+[+] Success in  0.25 sec
+DataManager : volkert
+info:
+	task = multiclass.classification
+	name = volkert
+	feat_type = Numerical
+	format = dense
+	is_sparse = 0
+	metric = pac_metric
+	target_type = Categorical
+	test_num = 7000
+	label_num = 10
+	target_num = 10
+	valid_num = 3500
+	has_categorical = 0
+	usage = AutoML challenge 2014
+	feat_num = 180
+	time_budget = 1200
+	train_num = 58310
+	has_missing = 0
+data:
+	X_train = array(58310L, 180L)
+	Y_train = array(58310L,)
+	X_valid = array(3500L, 180L)
+	X_test = array(7000L, 180L)
+feat_type:	array(180L,)
+feat_idx:	array(180L,)
+
+[+] Remaining time after reading data 1197.12 sec
+======== Creating model ==========
+(58310L, 180L)
+(58310L,)
+(3500L, 180L)
+(7000L, 180L)
+multiclass!!!!!!!!!
+
+make multiclass prediction
+
+('np seed = ', 1435334869)
+(58310L, 180L)
+train_data.shape == (58310,180)
+
+FS_iterations = 476
+
+('FS time = ', 9.522000074386597)
+0.000555555555556
+(58310L, 111L)
+n_iterations = 1440 depth=7 learning_rate = 0.010000, subsample_part = 0.600000, n_max_features=10
+hello
+('y_valid.shape = ', (3500L,))
+('y_test.shape = ', (7000L,))
+[+] Prediction success, time spent so far 2408.18 sec
+[+] Results saved, time spent so far 2408.20 sec
+[+] End cycle, remaining time -1211.08 sec
+[+] Done
+[+] Overall time spent 7661.33 sec ::  Overall time budget 6000.00 sec
+
+Process finished with exit code 0
