@@ -34,19 +34,24 @@ def albert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
         start_time = time.time()
 
 
-    FS_iterations =max(1,int(5000/target_num * (5000./n_samples)*2000./n_features))
+#    FS_iterations =max(1,int(5000/target_num * (5000./n_samples)*2000./n_features))
+    FS_iterations = 1000
     print ("FS_iterations = %d\n" % FS_iterations)
-    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=3)
+#    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=3)
+    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=4)
     select_clf.fit(train_data, labels)
     print("FS time = ", time.time() - start_time)
-
     my_mean =1./(10*n_features)
+    print(my_mean)
+    print("feature importances: ", np.sort(select_clf.feature_importances_))
+
     train_data = select_clf.transform(train_data,threshold=my_mean )
     valid_data = select_clf.transform(valid_data,threshold=my_mean )
     test_data = select_clf.transform(test_data,threshold=my_mean)
     print(my_mean)
     print(train_data.shape)
 
+#    exit(1)
     ######################### Make validation/test predictions
     n_features=train_data.shape[1]
     if n_features < 100:
@@ -132,12 +137,11 @@ for basename in datanames: # Loop over datasets
     labels = D.data['Y_train']
     valid_data = D.data['X_valid']
     test_data = D.data['X_test']
-    print (train_data.shape)
-    print (valid_data.shape)
-    print (test_data.shape)
-    print (labels.shape)
+    # print (train_data.shape)
+    # print (valid_data.shape)
+    # print (test_data.shape)
+    # print (labels.shape)
     time_spent = 0                   # Initialize time spent learning
-    #if basename in ["albert","dilbert","fabert","robert","volkert"]:
     (Y_valid, Y_test) = locals()[basename+"_predict"](train_data,labels, valid_data, test_data,output_dir, D.info['time_budget'],D.info['target_num'],D.info['is_sparse'])
     Y_valid=Y_valid[:,1]
     Y_test=Y_test[:,1]
