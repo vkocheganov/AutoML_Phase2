@@ -158,7 +158,12 @@ sys.path.append("libs")
 # from madeline import madeline_predict
 # from philippine import philippine_predict
 # from sylvine import sylvine_predict
-from multiclass import multiclass_predict
+
+from albert import albert_predict
+from dilbert import dilbert_predict
+from fabert import fabert_predict
+from robert import robert_predict
+from volkert import volkert_predict
 
 import os
 import numpy as np
@@ -221,7 +226,7 @@ if __name__=="__main__" and debug_mode<4:
         vprint( verbose,  "************************************************************************")
         vprint( verbose,  "****** Attempting to copy files (from res/) for RESULT submission ******")
         vprint( verbose,  "************************************************************************")
-        OK = data_io.copy_results(datanames, res_dir, output_dir, verbose) # DO NOT REMOVE!
+        OK = 0#data_io.copy_results(datanames, res_dir, output_dir, verbose) # DO NOT REMOVE!
         if OK:
             vprint( verbose,  "[+] Success")
             datanames = [] # Do not proceed with learning and testing
@@ -233,6 +238,8 @@ if __name__=="__main__" and debug_mode<4:
     # ================ @CODE SUBMISSION (SUBTITUTE YOUR CODE) ================= 
     overall_time_budget = 0
     for basename in datanames: # Loop over datasets
+        if basename not in ["dilbert"]:
+            continue
 
         vprint( verbose,  "************************************************")
         vprint( verbose,  "******** Processing dataset " + basename.capitalize() + " ********")
@@ -275,13 +282,18 @@ if __name__=="__main__" and debug_mode<4:
         print (test_data.shape)
         time_budget = time_budget - time_spent # Remove time spent so far
         time_spent = 0                   # Initialize time spent learning
-        if basename in ["christine","jasmine","madeline","philippine","sylvine"]:
-            (Y_valid, Y_test) = locals()[basename+"_predict"](train_data,labels, valid_data, test_data,output_dir)
+        #if basename in ["albert","dilbert","fabert","robert","volkert"]:
+        if basename in ["dilbert"]:
+            print("label shape ", labels.shape)
+            print(labels[0])
+            print(labels[1])
+            (Y_valid, Y_test) = locals()[basename+"_predict"](train_data,labels, valid_data, test_data,output_dir, D.info['time_budget'],D.info['target_num'],D.info['is_sparse'])
+            print ("Y_valid.shape: ",Y_valid.shape)
             print "christine processed!\n"
         else:
 #            if D.info['task'] == 'multiclass.classification' and basename !='newsgroups':
-             print "multiclass!!!!!!!!!\n"
-             (Y_valid, Y_test) = multiclass_predict(train_data,labels, valid_data, test_data,output_dir, D.info['time_budget'],D.info['target_num'],D.info['is_sparse'])
+             print "error!!!!!!!!!\n"
+             continue#(Y_valid, Y_test) = multiclass_predict(train_data,labels, valid_data, test_data,output_dir, D.info['time_budget'],D.info['target_num'],D.info['is_sparse'])
             # else:
             #     continue
         time_spent = time.time() - start

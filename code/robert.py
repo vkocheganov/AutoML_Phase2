@@ -60,3 +60,103 @@ def robert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
     print("y_valid.shape = ",y_valid.shape )
     print("y_test.shape = ",y_test.shape )
     return (y_valid, y_test)
+
+
+
+
+
+
+
+
+from sys import argv, path
+import sys
+import datetime
+zipme = False # use this flag to enable zipping of your code submission
+the_date = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
+submission_filename = 'automl_sample_submission_' + the_date
+debug_mode = 0
+verbose = True
+import os
+import numpy as np
+import time
+overall_start = time.time()
+run_dir = os.path.abspath(".")
+lib_dir = os.path.join(run_dir, "lib")
+res_dir = os.path.join(run_dir, "res")
+
+# Our libraries
+path.append (run_dir)
+path.append (lib_dir)
+
+import data_io                       # general purpose input/output functions
+from data_io import vprint           # print only in verbose mode
+from data_manager import DataManager # load/save data and get info about them
+
+sys.path.append("libs")
+
+default_input_dir="C:\\Users\\vmkocheg\\Documents\\MLContest\\Phase2\\input"
+default_output_dir="C:\\Users\\vmkocheg\\Documents\\MLContest\\Phase2\\output"
+if len(argv)==1: # Use the default input and output directories if no arguments are provided
+    input_dir = default_input_dir
+    output_dir = default_output_dir
+else:
+    input_dir = argv[1]
+    output_dir = os.path.abspath(argv[2]);
+
+#### INVENTORY DATA (and sort dataset names alphabetically)
+datanames = data_io.inventory_data(input_dir)
+#### DEBUG MODE: Show dataset list and STOP
+if debug_mode>=3:
+    data_io.show_io(input_dir, output_dir)
+    data_io.write_list(datanames)
+    datanames = [] # Do not proceed with learning and testing
+
+
+for basename in datanames: # Loop over datasets
+    if basename not in ["robert"]:
+        continue
+
+    vprint( verbose,  "************************************************")
+    vprint( verbose,  "******** Processing dataset " + basename.capitalize() + " ********")
+    vprint( verbose,  "************************************************")
+
+    # ======== Learning on a time budget:
+    # Keep track of time not to exceed your time budget. Time spent to inventory data neglected.
+    start = time.time()
+
+    # ======== Creating a data object with data, informations about it
+    vprint( verbose,  "======== Reading and converting data ==========")
+    D = DataManager(basename, input_dir, replace_missing=True, filter_features=True, verbose=verbose)
+    print D
+
+    # ======== Keeping track of time
+    time_spent = time.time() - start
+    vprint( verbose,  "time spent %5.2f sec" %time_spent)
+
+    vprint( verbose,  "======== Creating model ==========")
+    train_data = D.data['X_train']
+    labels = D.data['Y_train']
+    valid_data = D.data['X_valid']
+    test_data = D.data['X_test']
+    print (train_data.shape)
+    print (valid_data.shape)
+    print (test_data.shape)
+    print (labels.shape)
+    time_spent = 0                   # Initialize time spent learning
+    #if basename in ["albert","dilbert","fabert","robert","volkert"]:
+    (Y_valid, Y_test) = locals()[basename+"_predict"](train_data,labels, valid_data, test_data,output_dir, D.info['time_budget'],D.info['target_num'],D.info['is_sparse'])
+    time_spent = time.time() - start
+
+    vprint( verbose,  "[+] Prediction success, time spent so far %5.2f sec" % (time.time() - start))
+    # Write results
+    filename_valid = basename + '_valid_' + '.predict'
+    data_io.write(os.path.join(output_dir,filename_valid), Y_valid)
+    filename_test = basename + '_test_' + '.predict'
+    data_io.write(os.path.join(output_dir,filename_test), Y_test)
+
+    vprint( verbose,  "[+] Results saved, time spent so far %5.2f sec" % (time.time() - start))
+    time_spent = time.time() - start
+
+overall_time_spent = time.time() - overall_start
+vprint( verbose,  "[+] Done")
+vprint( verbose,  "[+] Overall time spent %5.2f sec " % overall_time_spent)
