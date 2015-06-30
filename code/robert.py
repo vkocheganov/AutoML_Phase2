@@ -38,19 +38,19 @@ def robert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
     FS_iterations = 2000
     print ("FS_iterations = %d\n" % FS_iterations)
 #    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=3)
-    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=4)
-    select_clf.fit(train_data, labels)
-    print("FS time = ", time.time() - start_time)
-
-    my_mean =1./(10*n_features)
-    print(my_mean)
-    print("feature importances: ", np.sort(select_clf.feature_importances_))
-
-    train_data = select_clf.transform(train_data,threshold=my_mean )
-    valid_data = select_clf.transform(valid_data,threshold=my_mean )
-    test_data = select_clf.transform(test_data,threshold=my_mean)
-    print(my_mean)
-    print(train_data.shape)
+#     select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=4)
+#     select_clf.fit(train_data, labels)
+#     print("FS time = ", time.time() - start_time)
+#
+#     my_mean =1./(10*n_features)
+#     print(my_mean)
+#     print("feature importances: ", np.sort(select_clf.feature_importances_))
+#
+#     train_data = select_clf.transform(train_data,threshold=my_mean )
+#     valid_data = select_clf.transform(valid_data,threshold=my_mean )
+#     test_data = select_clf.transform(test_data,threshold=my_mean)
+#     print(my_mean)
+#     print(train_data.shape)
 #    exit(1)
 
     ######################### Make validation/test predictions
@@ -60,7 +60,7 @@ def robert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
     else:
         gbt_features=int(n_features**0.5)
    # gbt_iterations= int((time_budget / 3000.) * 3000000/(gbt_features * target_num) * (7000./n_samples))
-    gbt_iterations= 2000
+    gbt_iterations= 10000
 #    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=int(10 * np.log2(gbt_iterations)/14.3), learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=5, min_samples_leaf=3)
     gbt_params=GBT_params(n_iterations=gbt_iterations,depth=5, learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=5, min_samples_leaf=3)
     gbt_params.print_params()
