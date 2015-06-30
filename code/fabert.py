@@ -34,22 +34,22 @@ def fabert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
 
 
 #    FS_iterations = max(1,int(5000/target_num * (5000./n_samples)*2000./n_features))
-    FS_iterations = 10000
-    print ("FS_iterations = %d\n" % FS_iterations)
-#    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=3)
-    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=4)
-    select_clf.fit(train_data, labels)
-    print("FS time = ", time.time() - start_time)
-
-    my_mean =1./(10*n_features)
-    print(my_mean)
-    print("feature importances: ", np.sort(select_clf.feature_importances_))
-
-    train_data = select_clf.transform(train_data,threshold=my_mean )
-    valid_data = select_clf.transform(valid_data,threshold=my_mean )
-    test_data = select_clf.transform(test_data,threshold=my_mean)
-    print(my_mean)
-    print(train_data.shape)
+#     FS_iterations = 10000
+#     print ("FS_iterations = %d\n" % FS_iterations)
+# #    select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=3)
+#     select_clf = ExtraTreesClassifier(n_estimators=FS_iterations,max_depth=4)
+#     select_clf.fit(train_data, labels)
+#     print("FS time = ", time.time() - start_time)
+#
+#     my_mean =1./(10*n_features)
+#     print(my_mean)
+#     print("feature importances: ", np.sort(select_clf.feature_importances_))
+#
+#     train_data = select_clf.transform(train_data,threshold=my_mean )
+#     valid_data = select_clf.transform(valid_data,threshold=my_mean )
+#     test_data = select_clf.transform(test_data,threshold=my_mean)
+#     print(my_mean)
+#     print(train_data.shape)
 #    exit(1)
 
     ######################### Make validation/test predictions
@@ -57,11 +57,11 @@ def fabert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
     if n_features < 100:
         gbt_features=n_features
     else:
-        #gbt_features=int(n_features**0.5)
-        gbt_features=int(n_features/2)
-    gbt_iterations= 10000#int((time_budget / 3000.) * 3000000/(gbt_features * target_num) * (7000./n_samples))
+        gbt_features=int(n_features**0.5)
+        #gbt_features=int(n_features/2)
+    gbt_iterations = 15000#int((time_budget / 3000.) * 3000000/(gbt_features * target_num) * (7000./n_samples))
 #    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=int(10 * np.log2(gbt_iterations)/14.3), learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=5, min_samples_leaf=3)
-    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=6, learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=5, min_samples_leaf=3)
+    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=4, learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=5, min_samples_leaf=3)
     gbt_params.print_params()
     (y_valid, y_test) = make_classification(gbt_params, train_data, labels, valid_data, test_data)
     print("y_valid.shape = ",y_valid.shape )
