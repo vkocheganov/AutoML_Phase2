@@ -43,10 +43,10 @@ def albert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
     #exit(1)
     ######################### Make validation/test predictions
     n_features=train_data.shape[1]
-    #gbt_features=int(n_features**0.5)
-    gbt_features=n_features
+    gbt_features=int(n_features**0.5)
+    #gbt_features=n_features
 #    gbt_iterations= int((time_budget / 3000.) * 3000000/(gbt_features * target_num) * (7000./n_samples))
-    gbt_iterations = 3000
+    gbt_iterations = 5000
 #    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=int(10 * np.log2(gbt_iterations)/14.3), learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=5, min_samples_leaf=3)
     gbt_params=GBT_params(n_iterations=gbt_iterations,depth=5, learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=10, min_samples_leaf=5)
     gbt_params.print_params()

@@ -48,7 +48,7 @@ def dilbert_predict(train_data,labels,valid_data,test_data,output_dir,time_budge
 #    gbt_iterations= int((time_budget / 3000.) * 3000000/(gbt_features * target_num) * (7000./n_samples))
     gbt_iterations= 15000
 #    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=int(10 * np.log2(gbt_iterations)/14.3), learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=5, min_samples_leaf=3)
-    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=5, learning_rate=0.01,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=10, min_samples_leaf=5)
+    gbt_params=GBT_params(n_iterations=gbt_iterations,depth=5, learning_rate=0.02,subsample_part=0.6,n_max_features=gbt_features,min_samples_split=10, min_samples_leaf=5)
     gbt_params.print_params()
     (y_valid, y_test) = make_classification(gbt_params, train_data, labels, valid_data, test_data)
     print("y_valid.shape = ",y_valid.shape )
