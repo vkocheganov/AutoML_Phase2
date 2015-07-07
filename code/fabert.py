@@ -31,7 +31,7 @@ def fabert_predict(train_data,labels,valid_data,test_data,output_dir,time_budget
     select_clf.fit(train_data, labels)
     print("FS time = ", time.time() - start_time)
 
-    my_mean =1./(100*n_features)
+    my_mean =1./(1000*n_features)
     print(my_mean)
     print("feature importances: ", np.sort(select_clf.feature_importances_))
 
